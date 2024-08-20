@@ -1,12 +1,12 @@
-import express from "express";
-import router from "./routes/index.js";
+import express, { Request, Response } from "express";
+// import router from "./routes/index";
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(router);
+// app.use(router);
 
-app.use((req, res) => {
+app.use((req: Request, res: Response) => {
   res.status(404).send("Route not found");
 });
 
