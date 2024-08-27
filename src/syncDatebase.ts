@@ -25,13 +25,13 @@ const product = new Product({
 
 
 export const syncDatabase = async () => {
-    try {
-        const newUser = await user.save();
-        product.ownerId = newUser.id
-        await product.save();
-        await category.save();
-        console.log("Database synchronized")
-    } catch (error) {
-        console.error(error)
-    }
+    // try {
+    //     const newUser = await user.save();
+    //     product.ownerId = newUser.id
+    //     await product.save();
+    //     await category.save();
+    //     console.log("Database synchronized")
+    // } catch (error) {
+    //     console.error(error)
+    // }
 }
