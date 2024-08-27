@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Request, Response } from "express";
+=======
+import {Request, Response } from "express";
+>>>>>>> clase2
 
 export const createUser = (req: Request, res: Response) => {
   res.json({ message: "", data: {} });
