@@ -22,12 +22,41 @@ export const createUser = async (
   }
 };
 
-export const getUsers = (req: Request, res: Response) => {
-  res.json({ message: "", data: {} });
+export const getUsers = async (
+  _req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const users = await User.find();
+    return res.status(200).json({
+      message: "Users retrieved successfully",
+      data: users,
+      error: false,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const getUser = (req: Request, res: Response) => {
-  res.json({ message: "", data: {} });
+export const getUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found", error: true });
+    }
+    return res.status(200).json({
+      message: "User retrieved successfully",
+      data: user,
+      error: false,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const updateUser = async (
@@ -61,9 +90,7 @@ export const deleteUser = async (
     if (!deletedUser) {
       return res.status(404).json({ message: "User not found", error: true });
     }
-    return res
-      .status(204)
-      .send();
+    return res.status(204).send();
   } catch (error) {
     next(error);
   }

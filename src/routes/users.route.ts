@@ -6,7 +6,11 @@ import {
   getUsers,
   updateUser,
 } from "../controllers";
-import { createUserValidation, deleteUserValidation, updatedUserValidation } from "../validations";
+import {
+  createUserValidation,
+  deleteUserValidation,
+  updatedUserValidation,
+} from "../validations";
 
 const router = Router();
 
@@ -16,7 +20,7 @@ router.get("/:id", getUser);
 
 router.post("/", createUserValidation, createUser);
 
-router.patch("/:id",updatedUserValidation, updateUser);
+router.patch("/:id", updatedUserValidation, updateUser);
 
 router.delete("/:id", deleteUserValidation, deleteUser);
 
