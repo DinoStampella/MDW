@@ -54,3 +54,10 @@ export const getProductsByCategory = async (req: Request, res: Response, next: N
     }
 }
 
+export const updateProduct = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const productUpdated = await Product.findByIdAndUpdate(req.params.id)
+    } catch (error) {
+        
+    }
+}
