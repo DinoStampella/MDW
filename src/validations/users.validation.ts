@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 
-const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-
 const createUserBodyValidationSchema = Joi.object({
   name: Joi.string().min(3).max(250).required(),
   lastName: Joi.string().required(),
@@ -46,12 +44,12 @@ export const updatedUserValidation = (
   const { error: bodyError } = updateUserBodyValidationSchema.validate(
     req.body
   );
-  const { error: paramError } = userParamValidationSchema.validate(
-    req.params
-  );
+  const { error: paramError } = userParamValidationSchema.validate(req.params);
   if (paramError || bodyError) {
     return res.status(400).json({
-      message: paramError ? paramError.details[0].message : bodyError?.details[0].message,
+      message: paramError
+        ? paramError.details[0].message
+        : bodyError?.details[0].message,
       error: true,
     });
   }
@@ -60,20 +58,17 @@ export const updatedUserValidation = (
 };
 
 export const deleteUserValidation = (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { error } = userParamValidationSchema.validate(req.params);
+  if (error) {
+    return res.status(400).json({
+      message: error.details[0].message,
+      error: true,
+    });
+  }
 
-    const { error } = userParamValidationSchema.validate(
-      req.params
-    );
-    if (error) {
-      return res.status(400).json({
-        message: error.details[0].message,
-        error: true,
-      });
-    }
-  
-    next();
-  };
+  next();
+};
