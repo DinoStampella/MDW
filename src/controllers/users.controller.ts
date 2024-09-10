@@ -61,9 +61,7 @@ export const deleteUser = async (
     if (!deletedUser) {
       return res.status(404).json({ message: "User not found", error: true });
     }
-    return res
-      .status(204)
-      .send();
+    return res.status(204).send();
   } catch (error) {
     next(error);
   }

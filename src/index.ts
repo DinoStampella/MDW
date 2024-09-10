@@ -1,8 +1,8 @@
 import express, { json, Request, Response } from "express";
 import router from "./routes/index";
 import connectDB from "./database";
-import dotenv from 'dotenv';
-import { syncDatabase } from "./syncDatabe";
+import dotenv from "dotenv";
+// import { syncDatabase } from "./syncDatabase";
 
 dotenv.config();
 const app = express();
@@ -10,9 +10,9 @@ const port = process.env.PORT || 3000;
 
 connectDB();
 
-syncDatabase();
+// syncDatabase();
 
-app.use(json())
+app.use(json());
 
 app.use(router);
 

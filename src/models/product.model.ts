@@ -18,7 +18,7 @@ const ProductSchema: Schema = new Schema(
     price: { type: Number },
     isActive: { type: Boolean },
     image: { type: String },
-    ownerId: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
+    ownerId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true,
