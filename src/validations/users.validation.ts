@@ -6,6 +6,7 @@ const createUserBodyValidationSchema = Joi.object({
   lastName: Joi.string().required(),
   birthDate: Joi.date().required(),
   email: Joi.string().email().required(),
+  password: Joi.string().required(),
   isAdmin: Joi.boolean().optional().default(false),
 });
 
